@@ -27,6 +27,7 @@ class BaseCountdown {
     protected String mSuffix, mSuffixDay, mSuffixHour, mSuffixMinute, mSuffixSecond, mSuffixMillisecond;
     protected float mSuffixDayTextWidth, mSuffixHourTextWidth, mSuffixMinuteTextWidth, mSuffixSecondTextWidth, mSuffixMillisecondTextWidth;
     protected boolean isDayLargeNinetyNine;
+    protected boolean isHourLargeNinetyNine;
     protected Paint mTimeTextPaint, mSuffixTextPaint, mMeasureHourWidthPaint;
     protected float mLeftPaddingSize;
     protected float mSuffixDayLeftMargin, mSuffixDayRightMargin;
@@ -730,6 +731,21 @@ class BaseCountdown {
         return isReLayout;
     }
 
+    public boolean handlerHourLargeNinetyNine() {
+        boolean isReLayout = false;
+        if (isShowHour && isConvertDaysToHours) {
+            // handler large ninety nine
+            if (!isHourLargeNinetyNine && mHour > 99) {
+                isHourLargeNinetyNine = true;
+                isReLayout = true;
+            } else if (isHourLargeNinetyNine && mHour <= 99) {
+                isHourLargeNinetyNine = false;
+                isReLayout = true;
+            }
+        }
+        return isReLayout;
+    }
+
     public void setTimes(int day, int hour, int minute, int second, int millisecond) {
         mDay = day;
         mHour = hour;
@@ -824,17 +840,17 @@ class BaseCountdown {
     public void setSuffixLRMargin(float suffixLRMargin) {
         mSuffixLRMargin = Utils.dp2px(mContext, suffixLRMargin);
         setSuffixMargin(mSuffixDayLeftMargin, mSuffixDayLeftMargin,
-                        mSuffixDayLeftMargin, mSuffixDayLeftMargin,
-                        mSuffixDayLeftMargin, mSuffixDayLeftMargin,
-                        mSuffixDayLeftMargin, mSuffixDayLeftMargin,
-                        mSuffixDayLeftMargin);
+                mSuffixDayLeftMargin, mSuffixDayLeftMargin,
+                mSuffixDayLeftMargin, mSuffixDayLeftMargin,
+                mSuffixDayLeftMargin, mSuffixDayLeftMargin,
+                mSuffixDayLeftMargin);
     }
 
     public boolean setSuffixMargin(Float suffixDayMarginL, Float suffixDayMarginR,
-                                Float suffixHourMarginL, Float suffixHourMarginR,
-                                Float suffixMinuteMarginL, Float suffixMinuteMarginR,
-                                Float suffixSecondMarginL, Float suffixSecondMarginR,
-                                Float suffixMillisecondMarginL) {
+                                   Float suffixHourMarginL, Float suffixHourMarginR,
+                                   Float suffixMinuteMarginL, Float suffixMinuteMarginR,
+                                   Float suffixSecondMarginL, Float suffixSecondMarginR,
+                                   Float suffixMillisecondMarginL) {
         boolean isRef = false;
 
         if (null != suffixDayMarginL) {

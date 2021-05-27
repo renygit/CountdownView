@@ -3,9 +3,10 @@ package cn.iwgang.countdownviewdemo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import cn.iwgang.countdownview.CountdownView;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
 
         CountdownView mCvCountdownViewTest2 = (CountdownView)findViewById(R.id.cv_countdownViewTest2);
         mCvCountdownViewTest2.setTag("test2");
-        long time2 = (long)30 * 60 * 1000;
+        long time2 = (long)7 * 24 * 60 * 60 * 1000;
         mCvCountdownViewTest2.start(time2);
 
         CountdownView cvCountdownViewTest211 = (CountdownView)findViewById(R.id.cv_countdownViewTest211);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements CountdownView.OnC
         mCvCountdownViewTest3.start(time3);
 
         CountdownView mCvCountdownViewTest4 = (CountdownView)findViewById(R.id.cv_countdownViewTest4);
-        long time4 = (long)150 * 24 * 60 * 60 * 1000;
+        long time4 = (long)7 * 24 * 60 * 60 * 1000;
         mCvCountdownViewTest4.start(time4);
 
         CountdownView cv_convertDaysToHours = (CountdownView) findViewById(R.id.cv_convertDaysToHours);
